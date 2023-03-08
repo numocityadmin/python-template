@@ -26,7 +26,7 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=3 --max-line-length=80 --ignore=E111,E121,E126 --statistics
       - name: Run and collect coverage
         run: |
-          coverage run --branch #filename 
+          coverage run -m unittest discover
           coverage html
           coverage report
           COVERAGE=$(coverage report | awk 'END{print $NF}' | sed 's/[^0-9]*//g')
@@ -43,4 +43,3 @@ jobs:
           name: coverage
           path: ./htmlcov
           retention-days: 21
-          
